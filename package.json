@@ -1,0 +1,22 @@
+{
+  "name": "renewal_node_mall",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/usagi0012/renewal_node_mall.git",
+  "author": "jiwon <usagi0012@naver.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.7.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "prisma": "^5.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "prettier": "3.1.0"
+  }
+}
