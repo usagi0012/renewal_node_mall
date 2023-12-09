@@ -96,7 +96,7 @@ router.post('/sign-in', async (req, res, next) => {
   const token = jwt.sign({ userId: user.userId }, process.env.JWT_ACCESS_TOKEN_SECRET, { expiresIn: '6h' });
 
   // authotization 쿠키에 Berer 토큰 형식으로 JWT를 저장
-  res.header('authorization', `Bearer ${token}`);
+  res.cookie('authorization', `Bearer ${token}`);
   return res.status(200).json({ message: '로그인 성공' });
 });
 

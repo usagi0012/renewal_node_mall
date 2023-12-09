@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 dotenv.config();
 
 import AuthRouter from './src/routers/auth.router.js';
@@ -10,6 +11,7 @@ const app = express();
 const PORT = process.env.SERVER_PORT;
 
 app.use(express.json());
+app.use(cookieParser());
 app.use('/api', [AuthRouter], [UsersRouter]);
 // app.use("/api", [PostsRouter]);
 

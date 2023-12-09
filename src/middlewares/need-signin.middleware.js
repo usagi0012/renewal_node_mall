@@ -7,7 +7,7 @@ import { prisma } from '../utils/prisma/index.js';
 export default async function (req, res, next) {
   try {
     //토큰 가져오기
-    const { authorization } = req.headers;
+    const { authorization } = req.cookies;
     if (!authorization) throw new Error('토큰이 존재하지 않습니다.');
 
     //토큰 타입과 값 나누기
@@ -27,6 +27,7 @@ export default async function (req, res, next) {
 
     //유저 없을 경우
     if (!user) {
+      res.clearCookie('authorization');
       throw new Error('토큰 사용자가 존재하지 않습니다.');
     }
 
@@ -34,6 +35,7 @@ export default async function (req, res, next) {
     req.user = user;
     next();
   } catch (error) {
+    res.clearCookie('authorization');
     // 토큰이 만료되었거나, 조작되었을 때, 에러 메시지를 다르게 출력
     switch (error.name) {
       case 'TokenExpiredError':
