@@ -70,12 +70,8 @@ router.post('/sign-up', async (req, res, next) => {
       data: { email, password: hash, name },
     });
     return res.status(201).json({ message: '회원가입이 완료되었습니다.' });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: '알 수 없는 오류가 발생하였습니다. 관리자에게 문의하세요.',
-    });
+  } catch (err) {
+    next(err);
   }
 });
 
@@ -100,12 +96,8 @@ router.post('/sign-in', async (req, res, next) => {
     // authotization 쿠키에 Berer 토큰 형식으로 JWT를 저장
     res.cookie('authorization', `Bearer ${token}`);
     return res.status(200).json({ message: '로그인 성공' });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: '알 수 없는 오류가 발생하였습니다. 관리자에게 문의하세요.',
-    });
+  } catch (err) {
+    next(err);
   }
 });
 
@@ -116,12 +108,8 @@ router.post('/sign-out', authMiddleware, async (req, res) => {
     return res.status(200).json({
       message: '로그아웃에 성공했습니다.',
     });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: '알 수 없는 오류가 발생하였습니다. 관리자에게 문의하세요.',
-    });
+  } catch (err) {
+    next(err);
   }
 });
 
@@ -133,12 +121,8 @@ router.delete('/resign', authMiddleware, async (req, res) => {
     res.status(200).json({
       message: '탈퇴가 처리되었습니다.',
     });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: '알 수 없는 오류가 발생하였습니다. 관리자에게 문의하세요.',
-    });
+  } catch (err) {
+    next(err);
   }
 });
 
