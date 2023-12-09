@@ -33,7 +33,7 @@ model Products {
   productName String  @unique @map("productName")
   productContent String @map("productContent")
   productStatus Status @default(FOR_SALE) @map("productStatus")
-  user Users @relation(fields: [userId], references: [userId])
+  user Users @relation(fields: [userId], references: [userId], onDelete: Cascade)
   userId Int
   createdAt DateTime @default(now()) @map("createdAt")
   updatedAt DateTime @updatedAt @map("updatedAt")
