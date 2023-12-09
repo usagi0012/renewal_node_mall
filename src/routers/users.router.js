@@ -5,7 +5,7 @@ import { prisma } from '../utils/prisma/index.js';
 
 import authMiddleware from '../middlewares/need-signin.middleware.js';
 
-/** 사용자 조회 API **/
+//내 정보 조회 API
 router.get('/users', authMiddleware, async (req, res, next) => {
   const { userId } = req.user;
 
