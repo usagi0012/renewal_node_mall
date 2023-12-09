@@ -6,13 +6,14 @@ dotenv.config();
 import ErrorHandlingMiddleware from './src/middlewares/error-handler.middleware.js';
 import AuthRouter from './src/routers/auth.router.js';
 import UsersRouter from './src/routers/users.router.js';
+import ProductsRouter from './src/routers/products.router.js';
 
 const app = express();
 const PORT = process.env.SERVER_PORT;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use('/api', [AuthRouter], [UsersRouter]);
+app.use('/api', [AuthRouter], [UsersRouter], [ProductsRouter]);
 app.use(ErrorHandlingMiddleware);
 
 app.listen(PORT, () => {
