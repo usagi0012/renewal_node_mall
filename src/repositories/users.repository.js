@@ -9,6 +9,29 @@ export class UserRepository {
     return exituser;
   };
 
+  //userId로 회원 조회
+  FindUser = async userId => {
+    const user = await prisma.users.findFirst({
+      where: { userId: +userId },
+      include: { products: true },
+    });
+    return user;
+  };
+
+  //회원 정보 수정
+  updateUser = async (userId, name, newHashedPassword) => {
+    const updateduser = await prisma.users.update({
+      where: {
+        userId: +userId,
+      },
+      data: {
+        name,
+        password: newHashedPassword,
+      },
+    });
+    return updateduser;
+  };
+
   //회원 가입
   signUp = async (email, hash, name) => {
     await prisma.users.create({
