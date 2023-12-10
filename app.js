@@ -7,6 +7,7 @@ import ErrorHandlingMiddleware from './src/middlewares/error-handler.middleware.
 import AuthRouter from './src/routers/auth.router.js';
 import UsersRouter from './src/routers/users.router.js';
 import ProductsRouter from './src/routers/products.router.js';
+// import TestRouter from './src/routers/test.router.js';
 
 const app = express();
 const PORT = process.env.SERVER_PORT;
