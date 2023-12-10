@@ -7,14 +7,13 @@ import ErrorHandlingMiddleware from './src/middlewares/error-handler.middleware.
 import AuthRouter from './src/routers/auth.router.js';
 import UsersRouter from './src/routers/users.router.js';
 import ProductsRouter from './src/routers/products.router.js';
-import TestRouter from './src/routers/test.router.js';
 
 const app = express();
 const PORT = process.env.SERVER_PORT;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use('/api', [AuthRouter], [TestRouter], [ProductsRouter]);
+app.use('/api', [AuthRouter], [UsersRouter], [ProductsRouter]);
 app.use(ErrorHandlingMiddleware);
 
 app.listen(PORT, () => {
